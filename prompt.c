@@ -70,7 +70,7 @@ int count_tok(char *input)
 void tokenize(char *buf, char **av)
 {
 	char *tok;
-	int i, j = 0;
+	int j = 0;
 
 	if (buf)
 	{
@@ -90,9 +90,7 @@ void tokenize(char *buf, char **av)
 			free(buf);
 		}
 		exec(av);
-		for (i = 0; i < j; i++)
-			free(av[i]);
-		free(av);
+		free_av(av);
 	}
 }
 
@@ -118,7 +116,6 @@ int main(int ac, char **av)
 		if (input_cpy == NULL)
 		{
 			perror("./shell");
-			return (-1);
 		}
 		_strcopy(input_cpy, input);
 		ac = count_tok(input);
@@ -128,5 +125,7 @@ int main(int ac, char **av)
 			tokenize(input_cpy, av);
 		}
 	}
+	free(input);
+	free_av(av);
 	return (0);
 }

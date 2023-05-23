@@ -1,6 +1,20 @@
 #include "main.h"
 
 /**
+ * free_av - freea argc
+ * @av: location to free
+ * Return: void
+ */
+void free_av(char **av)
+{
+	int i;
+
+	for ( i = 0; av[i]; i++)
+		free(av[i]);
+	free(av);
+}
+
+/**
  * is_eof - checks for ctrl D
  * @stat: checks status
  * @input: user input

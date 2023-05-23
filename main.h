@@ -15,5 +15,6 @@ char *get_command(char *cmd_copy);
 size_t _len(char *str);
 void _strcopy(char *dest, char *src);
 void is_eof(int stat, char *input);
+void free_av(char **av);
 
 #endif
