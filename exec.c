@@ -9,7 +9,7 @@ void free_av(char **av)
 {
 	int i;
 
-	for ( i = 0; av[i]; i++)
+	for (i = 0; av[i]; i++)
 		free(av[i]);
 	free(av);
 }
@@ -124,18 +124,19 @@ void exec(char *const av[])
 			if (pid == 0)
 			{
 				if (execve(cmd, av, NULL) == -1)
-					perror("./shell");
+					put_err(cmd);
 				free(cmd);
 				exit(0);
 			}
 			else
 			{
 				wait(NULL);
+				free(cmd);
 			}
 		}
 		else
 		{
-			perror("./shell");
+			put_err(av[0]);
 		}
 	}
 }

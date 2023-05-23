@@ -16,5 +16,7 @@ size_t _len(char *str);
 void _strcopy(char *dest, char *src);
 void is_eof(int stat, char *input);
 void free_av(char **av);
+void put_err(char *cmd);
+void _cat(char *dest, char *src);
 
 #endif

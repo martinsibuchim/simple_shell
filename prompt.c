@@ -75,7 +75,7 @@ void tokenize(char *buf, char **av)
 	if (buf)
 	{
 		if (av == NULL)
-			perror("./shell: Malloc failed to allocate memory");
+			perror("./hsh");
 		else
 		{
 			tok = strtok(buf, " \n");
@@ -115,7 +115,7 @@ int main(int ac, char **av)
 		input_cpy = malloc(sizeof(char) * char_read + 1);
 		if (input_cpy == NULL)
 		{
-			perror("./shell");
+			perror("./hsh");
 		}
 		_strcopy(input_cpy, input);
 		ac = count_tok(input);
