@@ -89,8 +89,12 @@ void tokenize(char *buf, char **av)
 			av[j] = NULL;
 			free(buf);
 		}
+
 		exec(av);
-		free_av(av);
+		if (av)
+		{
+			free_av(av);
+		}
 	}
 }
 
@@ -125,7 +129,5 @@ int main(int ac, char **av)
 			tokenize(input_cpy, av);
 		}
 	}
-	free(input);
-	free_av(av);
 	return (0);
 }

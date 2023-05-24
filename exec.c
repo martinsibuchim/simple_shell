@@ -66,7 +66,7 @@ char *get_command(char *cmd)
 
 	if (stat(cmd, &buf) == 0)
 		return (cmd);
-	location = getenv("PATH");
+	location = m_getenv("PATH");
 	if (location)
 	{
 		loc_copy = malloc(sizeof(char) * _len(location) + 1);
@@ -124,9 +124,9 @@ void exec(char *const av[])
 			if (pid == 0)
 			{
 				if (execve(cmd, av, NULL) == -1)
-					put_err(cmd);
+					perror(cmd);
 				free(cmd);
-				exit(0);
+				exit (0);
 			}
 			else
 			{
