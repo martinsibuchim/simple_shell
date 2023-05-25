@@ -25,19 +25,8 @@ void _env(char **envp);
 int _putchar(char c);
 void _puts(char *s);
 char *m_getenv(const char *env);
-void (*getbuilt_in(char **av))(char **av);
+int is_builtin(char **av);
 
 extern char **environ;
-
-/**
- * struct my_builtin - structure of type builtin
- * @fun: pointer to function name
- * @fp: function pointer
- */
-typedef struct my_builtin
-{
-	char *fun;
-	void (*fp)(char **av);
-} built_in;
 
 #endif

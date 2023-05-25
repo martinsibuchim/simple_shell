@@ -37,28 +37,21 @@ char *m_getenv(const char *env)
 /**
  * getbuilt_in - gets builtin function
  * @av: argument vector
- * Return: void
+ * Return: 0 else -1
  */
 
-void (*getbuilt_in(char **av))(char **av)
+int is_builtin(char **av)
 {
-	built_in func[] = {
-		{"exit", my_exit},
-		{"env", _env},
-		{NULL, NULL}
-	};
-	int i = 0;
-
-	while (func[i].fun != NULL)
+	if (_strcmp(av[0], "exit") == 0)
 	{
-		if (_strcmp(av[0], func[i].fun) == 0)
-		{
-			return (func[i].fp);
-		}
-		i++;
+		my_exit(av);
 	}
-	put_err(av[0]);
-	return (0);
+	else if (_strcmp(av[0], "env") == 0)
+	{
+		_env(av);
+		return (0);
+	}
+	return (-1);
 }
 
 /**
@@ -92,16 +85,27 @@ void my_exit(char **av)
  * @av: argument vector
  * Return: void
  */
-void _env(char **av __attribute__((unused)))
+void _env(char **av)
 {
 	int a;
+	char err[70] = "./hsh: env: ";
+	char *no = ": No such file or directory\n";
 
-	a = 0;
-	while (environ[a])
+	if (av[1] == NULL)
 	{
-		_puts(environ[a]);
-		_putchar('\n');
-		a++;
+		a = 0;
+		while (environ[a])
+		{
+			_puts(environ[a]);
+			_putchar('\n');
+			a++;
+		}
+	}
+	if (av[1] != NULL)
+	{
+		_cat(err, av[1]);
+		_cat(err, no);
+		write(1, &err, _len(err));
+		return;
 	}
 }
-

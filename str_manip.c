@@ -31,7 +31,7 @@ int _putchar(char c)
  */
 void put_err(char *cmd)
 {
-	char sh[25] = "./hsh: ";
+	char sh[40] = "./hsh: ";
 
 	_cat(sh, cmd);
 	perror(sh);

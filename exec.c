@@ -126,7 +126,7 @@ void exec(char *const av[])
 				if (execve(cmd, av, NULL) == -1)
 					perror(cmd);
 				free(cmd);
-				exit (0);
+				exit(0);
 			}
 			else
 			{
@@ -136,7 +136,8 @@ void exec(char *const av[])
 		}
 		else
 		{
-			put_err(av[0]);
+			perror(av[0]);
+			free(cmd);
 		}
 	}
 }

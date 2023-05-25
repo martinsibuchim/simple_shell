@@ -70,7 +70,7 @@ int count_tok(char *input)
 void tokenize(char *buf, char **av)
 {
 	char *tok;
-	int j = 0;
+	int i = 1, j = 0;
 
 	if (buf)
 	{
@@ -89,9 +89,13 @@ void tokenize(char *buf, char **av)
 			av[j] = NULL;
 			free(buf);
 		}
-
-		exec(av);
-		if (av)
+		i = is_builtin(av);
+		if (i == -1)
+		{
+			exec(av);
+			free_av(av);
+		}
+		else
 		{
 			free_av(av);
 		}
