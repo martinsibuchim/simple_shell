@@ -24,6 +24,7 @@ void my_exit(char **av);
 void _env(char **envp);
 int _putchar(char c);
 void _puts(char *s);
+char *m_getenv(const char *env);
 int is_builtin(char **av);
 
 extern char **environ;
